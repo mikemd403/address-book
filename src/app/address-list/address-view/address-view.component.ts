@@ -1,0 +1,25 @@
+import { Component, EventEmitter, OnInit, Output, Input } from '@angular/core';
+import { AddressEntry } from '../address-entry';
+
+@Component({
+  selector: 'app-address-view',
+  templateUrl: './address-view.component.html',
+  styleUrls: ['./address-view.component.css']
+})
+export class AddressViewComponent implements OnInit {
+  @Input() address: AddressEntry;
+  @Output() fireDelete: EventEmitter<AddressEntry> = new EventEmitter();
+  edit=false;
+  constructor() { }
+
+  ngOnInit(): void {
+  }
+
+  toggleEdit(): void {
+    this.edit = !this.edit;
+  }
+
+  delete(): void {
+    this.fireDelete.emit(this.address);
+  }
+}
